@@ -1,9 +1,11 @@
 import React from 'react';
-
+import Clock from './Frontend/clock'
 
 const Root = () => {
   return (
-    <div>{"I am Root"}</div>
+    <div>
+      <Clock/>
+    </div>
   )
 }
 
