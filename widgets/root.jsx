@@ -1,9 +1,10 @@
 import React from 'react';
-import Clock from './Frontend/clock'
+import Clock from './Frontend/clock';
+import Tabs from './Frontend/tabs';
 
 const Root = () => {
   return (
-    <div>
+    <div className='app-main'>
       <Clock/>
     </div>
   )

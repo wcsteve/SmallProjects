@@ -12,7 +12,11 @@ class Clock extends React.Component {
   }
 
   componentDidMount(){
-    setInterval(this.tick, 1000);
+    this.intervalID = setInterval(this.tick, 1000);
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.intervalId);
   }
 
   tick(){
@@ -20,13 +24,22 @@ class Clock extends React.Component {
   }
 
   render(){
-    const time = this.state.time;
-    const hour = time.getHours() % 12;
-    const minute = time.getMinutes()
-    const seconds = time.getSeconds()
+    let time = this.state.time;
+    let date = this.state.time.toDateString();
+    let hours = time.getHours() % 12;
+    let minutes = time.getMinutes();
+    let seconds = time.getSeconds();
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
+
     return (
-      <div>
-        <h1>{`${hour} : ${minute} : ${seconds}`}</h1>
+      <div className="clock">
+        <h1>Clock</h1>
+        <br></br>
+        <div className="clock-widget">
+          <h1>Time: {`${hours}:${minutes}:${seconds}`} PDT</h1>
+          <h1>Date: {date}</h1>
+        </div>
       </div>
     )
   }

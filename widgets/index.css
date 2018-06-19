@@ -41,3 +41,28 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+.app-main{
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+.clock{
+  /* width: 550px; */
+  margin-left: auto;
+  margin-right: auto;
+  align-content: center;
+  /* text-align: center; */
+  font-family: 'Encode Sans Condensed', sans-serif;
+  font-size: 24px;
+}
+
+.clock-widget{
+  border: 1px solid;
+  margin: 20px 0px 20px 0px;
+  padding: 10px;
+}
+
+.clock-text{
+}
