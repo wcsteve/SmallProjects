@@ -21,7 +21,11 @@ const Root = () => {
   return (
     <div className='app-main'>
       <Clock/>
-      <Tabs/>
+
+      <span className="tab-search-container">
+        <Tabs content={TabsContent}/>
+
+      </span>
     </div>
   )
 }
