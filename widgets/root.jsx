@@ -1,6 +1,7 @@
 import React from 'react';
 import Clock from './Frontend/clock';
 import Tabs from './Frontend/tabs';
+import Weather from './Frontend/weather';
 
 const TabsContent = [
   {
@@ -21,7 +22,7 @@ const Root = () => {
   return (
     <div className='app-main'>
       <Clock/>
-
+      <Weather/>
       <span className="tab-search-container">
         <Tabs content={TabsContent}/>
 
