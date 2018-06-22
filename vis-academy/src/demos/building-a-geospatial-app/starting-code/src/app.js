@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import MapGL from 'react-map-gl';
 import taxiData from '../../../data/taxi';
 import DeckGLOverlay from './deckgl-overlay';
-import { LayerControls, SCATTERPLOT_CONTROLS } from './layer-controls';
+import { LayerControls, HEXAGON_CONTROLS } from './layer-controls';
+import { tooltipStyle } from './style';
 
 const MAPBOX_STYLE = 'mapbox://styles/mapbox/dark-v9';
 const MAPBOX_TOKEN = process.env.MapboxAccessToken; // eslint-disable-line
@@ -27,10 +28,10 @@ export default class App extends Component {
         zoom: 11,
         maxZoom: 16
       },
-      settings: Object.keys(SCATTERPLOT_CONTROLS).reduce(
+      settings: Object.keys(HEXAGON_CONTROLS).reduce(
         (accu, key) => ({
           ...accu,
-          [key]: SCATTERPLOT_CONTROLS[key].value
+          [key]: HEXAGON_CONTROLS[key].value
         }),
         {}
       )
@@ -74,6 +75,10 @@ export default class App extends Component {
     }
   }
 
+  _onHover({ x, y, object }) {
+    this.setState({ x, y, hoveredObject: object });
+  }
+
   _updateLayerSettings(settings) {
     this.setState({ settings });
   }
@@ -96,7 +101,7 @@ export default class App extends Component {
       <div>
         <LayerControls
           settings={this.state.settings}
-          propTypes={SCATTERPLOT_CONTROLS}
+          propTypes={HEXAGON_CONTROLS}
           onChange={settings => this._updateLayerSettings(settings)}
         />
         <MapGL
@@ -106,9 +111,20 @@ export default class App extends Component {
           mapboxApiAccessToken={MAPBOX_TOKEN}
           onViewportChange={viewport => this._onViewportChange(viewport)}
         >
+          {this.state.hoveredObject && (
+            <div
+              style={{
+                ...tooltipStyle,
+                transform: `translate(${this.state.x}px, ${this.state.y}px)`
+              }}
+            >
+              <div>{JSON.stringify(this.state.hoveredObject)}</div>
+            </div>
+          )}
           <DeckGLOverlay
             viewport={this.state.viewport}
             data={this.state.points}
+            onHover={hover => this._onHover(hover)}
             {...this.state.settings}
           />
         </MapGL>
