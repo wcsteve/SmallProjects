@@ -34,6 +34,11 @@ export default class DeckGLOverlay extends Component {
       return null;
     }
 
+    const filteredData =
+      this.props.hour === null
+        ? this.props.data
+        : this.props.data.filter(d => d.hour === this.props.hour);
+
     const layers = [
       !this.props.showHexagon
         ? new ScatterplotLayer({
@@ -45,7 +50,8 @@ export default class DeckGLOverlay extends Component {
             pickable: true,
             radiusMinPixels: 0.25,
             radiusMaxPixels: 30,
-            ...this.props
+            ...this.props,
+            data: filteredData
           })
         : null,
       this.props.showHexagon
@@ -59,8 +65,8 @@ export default class DeckGLOverlay extends Component {
             lightSettings: LIGHT_SETTINGS,
             opacity: 1,
             pickable: true,
-            radius: 300,
-            ...this.props
+            ...this.props,
+            data: filteredData
           })
         : null
     ];

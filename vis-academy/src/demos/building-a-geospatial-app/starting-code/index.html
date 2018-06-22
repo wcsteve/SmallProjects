@@ -3,6 +3,7 @@
   <head>
     <meta charset='UTF-8' />
     <link rel="stylesheet" href="https://unpkg.com/react-vis@1.5.0/dist/style.css">
+    <link rel="stylesheet" type="text/css" href="framer/mapbox-gl.css">
     <title>Visualization Tutorial - Starting Code</title>
     <style>
       body {
@@ -24,5 +25,9 @@
   <body>
     <div id='root' />
     <script type="text/javascript" src="bundle.js"></script>
+    <script>
+      errorElement = document.querySelector('.mapboxgl-missing-css');
+      errorElement.style.display = 'none';
+    </script>
   </body>
 </html>
