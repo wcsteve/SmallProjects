@@ -5,22 +5,19 @@
     <title></title>
   </head>
   <body>
-    <div class="chart">
-
-
-    </div>
+    <svg class="chart"></svg>
     <style>
-    .chart div {
-      font: 10px sans-serif;
-      background-color: steelblue;
-      text-align: right;
-      padding: 3px;
-      margin: 1px;
-      color: white;
-    }
+    .chart rect {
+    fill: steelblue;
+  }
+
+  .chart text {
+    fill: white;
+    font: 10px sans-serif;
+    text-anchor: end;
+  }
     </style>
     <script src="https://d3js.org/d3.v5.js"></script>
-    <script type="text/javascript" src="./data.js"></script>
     <script type="text/javascript" src="./d3_bar_script.js"></script>
   </body>
 </html>
